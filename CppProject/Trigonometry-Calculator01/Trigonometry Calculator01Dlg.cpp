@@ -168,7 +168,7 @@ HCURSOR CTrigonometryCalculator01Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()
+void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，进入该函数
 {
 	// TODO: 计算sin函数	 
 	UpdateData(TRUE);                 // 将各控件中的数据保存到相应的变量  	
@@ -180,18 +180,27 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()
 void CTrigonometryCalculator01Dlg::OnBnClickedCosButton()
 {
 	// TODO: 计算cos函数
+	UpdateData(TRUE);                 	
+	m_editResult = f_cos(m_editNUM);  			  
+	UpdateData(FALSE);
 }
 
 
 void CTrigonometryCalculator01Dlg::OnBnClickedTanButton()
 {
 	// TODO: 计算tan函数
+	UpdateData(TRUE);
+	m_editResult = f_tan(m_editNUM);
+	UpdateData(FALSE);
 }
 
 
 void CTrigonometryCalculator01Dlg::OnBnClickedCotButton()
 {
 	// TODO: 计算cot函数
+	UpdateData(TRUE);
+	m_editResult = f_cot(m_editNUM);
+	UpdateData(FALSE);
 }
 
 

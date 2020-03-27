@@ -6,7 +6,7 @@
 int main()
 {
     double COS(double x);
-    double t =  150;
+    double t = 45;
     double X=COS(t);
     std::cout << X;
 }
@@ -14,6 +14,7 @@ int main()
 double COS(double x)
 {
     double pi = 3.1415926;
+    x=(x/180)*pi;
     for (;1;)
     {
         if (x > pi)
@@ -34,7 +35,7 @@ double COS(double x)
     int symbol = 1;
     
     
-    for (int i = 2;i < 999;i = i + 2)
+    for (int i = 2;i < 21;i = i + 2)
     {
         symbol = symbol * (-1);       
         double mi_x = 1;

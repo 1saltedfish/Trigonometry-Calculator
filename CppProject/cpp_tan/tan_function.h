@@ -9,3 +9,6 @@ public:
 	double caculate(void);
 };
 
+
+int input_parse(double x);
+

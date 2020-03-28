@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "Trigonometry Calculator01.h"
 #include "Trigonometry Calculator01Dlg.h"
+#include "Trigonometric_Function.h"
 #include "afxdialogex.h"
 #include <iomanip>
 #include <iostream>
@@ -14,10 +15,7 @@
 #define new DEBUG_NEW
 #endif
 
-
 using namespace std;
-
-int ORDER_NUM = 10;  //麦克劳林展开的阶数
 
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
@@ -170,50 +168,39 @@ HCURSOR CTrigonometryCalculator01Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-//求n的阶乘函数
-LONG64 factorial(int n)    //7！就会超出int所能表示的范围，故要用long64
+void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，进入该函数
 {
-	LONG64 y = 1;
-	for(int i = 1; i <= n; i++)
-		y = y * i;
-	return y;
-}
-
-void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()
-{
-	// TODO: 计算sin函数
-	// 将各控件中的数据保存到相应的变量   
-	UpdateData(TRUE);
-
-	//根据麦克劳林展开式计算sin函数
-	m_editResult = 0;
-	for (int i = 1; i <= ORDER_NUM; i++)
-	{
-		m_editResult += pow(-1, i - 1) * pow(m_editNUM, 2 * i - 1) / factorial(2 * i - 1);
-	}		
-		
-	//m_editResult = sin(m_editNUM);
-
-	// 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值   
-	UpdateData(FALSE);
+	// TODO: 计算sin函数	 
+	UpdateData(TRUE);                 // 将各控件中的数据保存到相应的变量  	
+	m_editResult = f_sin(m_editNUM);  // 计算sin的值			  
+	UpdateData(FALSE);                // 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值 
 }
 
 
 void CTrigonometryCalculator01Dlg::OnBnClickedCosButton()
 {
 	// TODO: 计算cos函数
+	UpdateData(TRUE);                 	
+	m_editResult = f_cos(m_editNUM);  			  
+	UpdateData(FALSE);
 }
 
 
 void CTrigonometryCalculator01Dlg::OnBnClickedTanButton()
 {
 	// TODO: 计算tan函数
+	UpdateData(TRUE);
+	m_editResult = f_tan(m_editNUM);
+	UpdateData(FALSE);
 }
 
 
 void CTrigonometryCalculator01Dlg::OnBnClickedCotButton()
 {
 	// TODO: 计算cot函数
+	UpdateData(TRUE);
+	m_editResult = f_cot(m_editNUM);
+	UpdateData(FALSE);
 }
 
 

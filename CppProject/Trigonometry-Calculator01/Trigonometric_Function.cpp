@@ -149,7 +149,7 @@ double f_cot(double x)
 	double newa = x * pi / 180.0;
 	//根据cot函数的泰勒公式展开，取前面的4项。
 	double cotx = 1.0 / newa - newa / 3.0 - pow(newa, 3) / 45 - 2 * pow(newa, 5) / 945.0;
-	if (abs(cotx) < 0.007)
+	if (-0.007 < cotx < 0.007)
 	{
 		cotx = 0;
 	}

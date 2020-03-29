@@ -1,4 +1,4 @@
-function result = COX( x)
+function result = XCOX( x)
 x=x/180*pi;
 for n=1:999
     if (x >pi )
@@ -16,7 +16,7 @@ end
  double result;
  temp=0;
   symbol = 1;
-  for  i = 2:2:998
+  for  i = 2:2:60
         symbol = symbol * (-1);       
          mi_x = 1;
          jicheng = 1;
@@ -27,4 +27,6 @@ end
         end
         temp = temp + symbol * mi_x / jicheng;
   end
+ 
     result = 1 + temp;
+result=round(result,5)

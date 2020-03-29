@@ -6,14 +6,14 @@
 int main()
 {
     double COS(double x);
-    double t = 45;
+    double t = 180;
     double X=COS(t);
-    std::cout << X;
+    std::cout << X;;
 }
 
 double COS(double x)
 {
-    double pi = 3.1415926;
+    double pi = 3.1415926535898;
     x=(x/180)*pi;
     for (;1;)
     {
@@ -48,6 +48,8 @@ double COS(double x)
         temp = temp + symbol * mi_x / jicheng;
     }
     result = 1 + temp;
+    if (-0.0000001<result && result < 0.0000001)
+        result = 0;
     return result;
 }
 

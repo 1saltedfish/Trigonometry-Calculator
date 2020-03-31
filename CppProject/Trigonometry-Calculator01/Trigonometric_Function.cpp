@@ -17,6 +17,9 @@ LONG64 factorial(int n)    //7！就会超出int所能表示的范围，故要用long64
 /*sin函数，输入的是角度*/
 double f_sin(double x)
 {
+	if (x > 1048576.0)//输入大于2^20
+		return INFINITY;
+
 	if (x >= 360)  //将输入规范至-360—360°之间
 		x -= floor(x / 360) * 360;
 	if (x <= -360)
@@ -39,6 +42,9 @@ double f_sin(double x)
 /*cos函数*/
 double f_cos(double x)
 {
+	if (x > 1048576.0)//输入大于2^20
+		return INFINITY;
+
     x = (x / 180) * pi;
     for (; 1;)
     {
@@ -85,6 +91,10 @@ double f_tan(double input)
 	double o;
 	double x, y;
 
+	if (input > 1048576.0)//输入大于2^20
+		return INFINITY;
+
+
 	//不存在则返回INFINITY，输出显示inf
 	if (fmod(input, 180) == 90)
 	{
@@ -118,6 +128,9 @@ double f_cot(double x)
 {
 	int quotient = 1;
 	// cot函数周期为pi
+
+	if (x > 1048576.0)//输入大于2^20
+		return INFINITY;
 
 	//double和fioat型不能用%符号求余 ！！ 所以(a - int(a) + int(a) % 180)是相当与 a%180  
 	if ((x - int(x) + int(x) % 180) == 0)

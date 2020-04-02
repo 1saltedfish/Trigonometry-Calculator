@@ -15,29 +15,29 @@ LONG64 factorial(int n)    //7！就会超出int所能表示的范围，故要用long64
 }
 
 /*sin函数，输入的是角度*/
-double f_sin(double x)
-{
-	if (x > 1048576.0)//输入大于2^20
-		return INFINITY;
-
-	if (x >= 360)  //将输入规范至-360—360°之间
-		x -= floor(x / 360) * 360;
-	if (x <= -360)
-		x += floor(-x / 360) * 360;
-
-	x = pi / 180 * x;  //将角度转化为弧度
-
-	double y = 0;      //初始化输出为零
-	for (int i = 1; i <= ORDER_NUM; i++)
-		y += pow(-1, i - 1) * pow(x, 2 * i - 1) / factorial(2 * i - 1);
-
-	if (y > 0 && y < 1.0e-8)  //清零误差
-		y = 0;
-	else if (y > -1.0e-8 && y < 0)
-		y = 0;
-
-	return y;
-}
+//double f_sin(double x)
+//{
+//	if (x > 1048576.0)//输入大于2^20
+//		return INFINITY;
+//
+//	if (x >= 360)  //将输入规范至-360—360°之间
+//		x -= floor(x / 360) * 360;
+//	if (x <= -360)
+//		x += floor(-x / 360) * 360;
+//
+//	x = pi / 180 * x;  //将角度转化为弧度
+//
+//	double y = 0;      //初始化输出为零
+//	for (int i = 1; i <= ORDER_NUM; i++)
+//		y += pow(-1, i - 1) * pow(x, 2 * i - 1) / factorial(2 * i - 1);
+//
+//	if (y > 0 && y < 1.0e-8)  //清零误差
+//		y = 0;
+//	else if (y > -1.0e-8 && y < 0)
+//		y = 0;
+//
+//	return y;
+//}
 
 /*cos函数*/
 double f_cos(double x)
@@ -85,43 +85,43 @@ double f_cos(double x)
 }
 
 /*tan函数*/
-double f_tan(double input)
-{
-	//使用麦克劳林展开近似tan函数，默认阶数为10
-	double o;
-	double x, y;
-
-	if (input > 1048576.0)//输入大于2^20
-		return INFINITY;
-
-
-	//不存在则返回INFINITY，输出显示inf
-	if (fmod(input, 180) == 90)
-	{
-		return INFINITY;
-	}		
-
-	//对输入进行处理：使得输入在-90到+90范围内
-	x = fmod(input, 180);//将数轴上的点全部映射到-180到180上,此时x的取值范围为-180到180,需要再将其压缩为-90到90
-	if (x > 90)
-	{
-		x = x - 180;//将90-180上的点映射为-90-0
-	}
-	else if (x < -90)
-	{
-		x = x + 180;//将-180--90的点映射为0-90
-	}
-
-	//常用特殊值
-	if (x == 45)
-		return 1;
-	if (x == -45)
-		return -1;
-
-	y = x / 180 * pi;	//将角度输入转化为弧度输入
-	o = y + (double(1.0 / 3.0)) * pow(y, 3) + double(2.0 / 15.0) * pow(y, 5) + double(17.0 / 315.0) * pow(y, 7) + double(62.0 / 2835.0) * pow(y, 9);
-	return o;
-}
+//double f_tan(double input)
+//{
+//	//使用麦克劳林展开近似tan函数，默认阶数为10
+//	double o;
+//	double x, y;
+//
+//	if (input > 1048576.0)//输入大于2^20
+//		return INFINITY;
+//
+//
+//	//不存在则返回INFINITY，输出显示inf
+//	if (fmod(input, 180) == 90)
+//	{
+//		return INFINITY;
+//	}		
+//
+//	//对输入进行处理：使得输入在-90到+90范围内
+//	x = fmod(input, 180);//将数轴上的点全部映射到-180到180上,此时x的取值范围为-180到180,需要再将其压缩为-90到90
+//	if (x > 90)
+//	{
+//		x = x - 180;//将90-180上的点映射为-90-0
+//	}
+//	else if (x < -90)
+//	{
+//		x = x + 180;//将-180--90的点映射为0-90
+//	}
+//
+//	//常用特殊值
+//	if (x == 45)
+//		return 1;
+//	if (x == -45)
+//		return -1;
+//
+//	y = x / 180 * pi;	//将角度输入转化为弧度输入
+//	o = y + (double(1.0 / 3.0)) * pow(y, 3) + double(2.0 / 15.0) * pow(y, 5) + double(17.0 / 315.0) * pow(y, 7) + double(62.0 / 2835.0) * pow(y, 9);
+//	return o;
+//}
 
 /*cot函数*/
 double f_cot(double x)

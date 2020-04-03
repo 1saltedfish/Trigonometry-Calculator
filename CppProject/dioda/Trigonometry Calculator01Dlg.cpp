@@ -10,7 +10,6 @@
 #include "afxdialogex.h"
 #include <iomanip>
 #include <iostream>
-#include "sindll.lib"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -177,12 +176,11 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，�
 	UpdateData(TRUE);                 // 将各控件中的数据保存到相应的变量  
 
 
-	//HINSTANCE hDllInst;
-	//hDllInst = LoadLibrary(L"sindll.dll"); //调用DLL
-	//typedef double(*PLUSFUNC)(double input); //后边为参数，前面为返回值
-	//PLUSFUNC f_sin = (PLUSFUNC)GetProcAddress(hDllInst, "sincpp"); //GetProcAddress为获取该函数的地址
-	
-	m_editResult = sincpp(m_editNUM);
+	HINSTANCE hDllInst;
+	hDllInst = LoadLibrary(L"sincpp.dll"); //调用DLL
+	typedef double(*PLUSFUNC)(double input); //后边为参数，前面为返回值
+	PLUSFUNC f_sin = (PLUSFUNC)GetProcAddress(hDllInst, "sincpp"); //GetProcAddress为获取该函数的地址
+	m_editResult = f_sin(m_editNUM);
 
 	UpdateData(FALSE);                // 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值 
 }

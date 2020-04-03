@@ -40,4 +40,5 @@ public:
 	afx_msg void OnBnClickedCotButton();
 	afx_msg void OnBnClickedQuitButton();
 	afx_msg void OnBnClickedClcButton();
+//	afx_msg void OnEnChangeCalEdit();
 };

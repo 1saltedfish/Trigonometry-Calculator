@@ -15,29 +15,29 @@ LONG64 factorial(int n)    //7！就会超出int所能表示的范围，故要用long64
 }
 
 /*sin函数，输入的是角度*/
-//double f_sin(double x)
-//{
-//	if (x > 1048576.0)//输入大于2^20
-//		return INFINITY;
-//
-//	if (x >= 360)  //将输入规范至-360—360°之间
-//		x -= floor(x / 360) * 360;
-//	if (x <= -360)
-//		x += floor(-x / 360) * 360;
-//
-//	x = pi / 180 * x;  //将角度转化为弧度
-//
-//	double y = 0;      //初始化输出为零
-//	for (int i = 1; i <= ORDER_NUM; i++)
-//		y += pow(-1, i - 1) * pow(x, 2 * i - 1) / factorial(2 * i - 1);
-//
-//	if (y > 0 && y < 1.0e-8)  //清零误差
-//		y = 0;
-//	else if (y > -1.0e-8 && y < 0)
-//		y = 0;
-//
-//	return y;
-//}
+double f_sin(double x)
+{
+	if (x > 1048576.0)//输入大于2^20
+		return INFINITY;
+
+	if (x >= 360)  //将输入规范至-360—360°之间
+		x -= floor(x / 360) * 360;
+	if (x <= -360)
+		x += floor(-x / 360) * 360;
+
+	x = pi / 180 * x;  //将角度转化为弧度
+
+	double y = 0;      //初始化输出为零
+	for (int i = 1; i <= ORDER_NUM; i++)
+		y += pow(-1, i - 1) * pow(x, 2 * i - 1) / factorial(2 * i - 1);
+
+	if (y > 0 && y < 1.0e-8)  //清零误差
+		y = 0;
+	else if (y > -1.0e-8 && y < 0)
+		y = 0;
+
+	return y;
+}
 
 /*cos函数*/
 double f_cos(double x)

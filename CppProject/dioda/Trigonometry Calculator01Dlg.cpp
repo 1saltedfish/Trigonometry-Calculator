@@ -10,6 +10,7 @@
 #include "afxdialogex.h"
 #include <iomanip>
 #include <iostream>
+#include <iomanip>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -80,6 +81,7 @@ BEGIN_MESSAGE_MAP(CTrigonometryCalculator01Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_COT_BUTTON, &CTrigonometryCalculator01Dlg::OnBnClickedCotButton)
 	ON_BN_CLICKED(IDC_QUIT_BUTTON, &CTrigonometryCalculator01Dlg::OnBnClickedQuitButton)
 	ON_BN_CLICKED(IDC_CLC_BUTTON, &CTrigonometryCalculator01Dlg::OnBnClickedClcButton)
+	//ON_EN_CHANGE(IDC_CAL_EDIT, &CTrigonometryCalculator01Dlg::OnEnChangeCalEdit)
 END_MESSAGE_MAP()
 
 
@@ -115,7 +117,7 @@ BOOL CTrigonometryCalculator01Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-
+	
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -176,10 +178,11 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，�
 	UpdateData(TRUE);                 // 将各控件中的数据保存到相应的变量  
 
 
-	HINSTANCE hDllInst;
-	hDllInst = LoadLibrary(L"sincpp.dll"); //调用DLL
-	typedef double(*PLUSFUNC)(double input); //后边为参数，前面为返回值
-	PLUSFUNC f_sin = (PLUSFUNC)GetProcAddress(hDllInst, "sincpp"); //GetProcAddress为获取该函数的地址
+	//HINSTANCE hDllInst;
+	//hDllInst = LoadLibrary(L"sindll.dll"); //调用DLL
+	//typedef double(*PLUSFUNC)(double input); //后边为参数，前面为返回值
+	//PLUSFUNC f_sin = (PLUSFUNC)GetProcAddress(hDllInst, "sincpp"); //GetProcAddress为获取该函数的地址
+	
 	m_editResult = f_sin(m_editNUM);
 
 	UpdateData(FALSE);                // 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值 
@@ -234,3 +237,14 @@ void CTrigonometryCalculator01Dlg::OnBnClickedClcButton()
 	UpdateData(FALSE);
 
 }
+
+
+//void CTrigonometryCalculator01Dlg::OnEnChangeCalEdit()
+//{
+//	// TODO:  如果该控件是 RICHEDIT 控件，它将不
+//	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
+//	// 函数并调用 CRichEditCtrl().SetEventMask()，
+//	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
+//
+//	// TODO:  在此添加控件通知处理程序代码
+//}

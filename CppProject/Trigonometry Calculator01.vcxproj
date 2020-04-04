@@ -303,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="coscpp.dll" />
+    <None Include="cotcpp.dll" />
     <None Include="res\TrigonometryCalculator01.rc2" />
     <None Include="sincpp.dll" />
     <None Include="tancpp.dll" />

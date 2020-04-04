@@ -72,6 +72,9 @@
     <None Include="tancpp.dll">
       <Filter>库文件</Filter>
     </None>
+    <None Include="cotcpp.dll">
+      <Filter>库文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Trigonometry Calculator01.ico">

@@ -194,52 +194,7 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，�
 			UpdateData(FALSE);
 		}
 		FreeLibrary(hDll);  //释放dll
-	}
-
-	//UpdateData(TRUE);
-	//typedef bool(*pInitialize)(void);  //sinm初始化函数
-	//pInitialize sinmInitialize = NULL;
-	//HINSTANCE hDll;   //DLL句柄 		
-	//hDll = LoadLibrary(_T("sinm.dll"));  //动态获取dll文件路径
-	//if (hDll != NULL)
-	//{
-	//	sinmInitialize = (pInitialize)GetProcAddress(hDll, "sinmInitialize"); //sinmdll初始化函数
-	//	if (sinmInitialize())  //初始化，成功后才进入后续调用
-	//	{
-	//		typedef double(*lpSinFun)(double); //宏定义函数指针类型
-	//		lpSinFun sinFun;  //函数指针	
-	//		sinFun = (lpSinFun)GetProcAddress(hDll, "sinm");
-	//		if (sinFun != NULL)
-	//		{
-	//			m_editResult = 0; //初始化输出为零
-	//			m_editResult = sinFun(m_editNUM);
-	//			UpdateData(FALSE);
-	//		}
-	//	
-	//		typedef void(*pTerminate)(void);
-	//		pTerminate sinmTerminate = NULL;
-	//		sinmTerminate = (pTerminate)GetProcAddress(hDll, "TestTerminate");   //sinmdll结束函数
-	//		sinmTerminate();
-	//		FreeLibrary(hDll);  //释放dll
-	//	}
-	//}
-		
-
-	
-	/*UpdateData(TRUE);	
-	mclmcrInitialize();
-	if (!mclInitializeApplication(NULL, 0)) return;
-	if (!sinmInitialize()) return;
-	mwArray x(1, 1, mxDOUBLE_CLASS, mxREAL);
-	mwArray y(1, 1, mxDOUBLE_CLASS, mxREAL);
-	x.SetData(&m_editNUM, 1);
-	x(1, 1) = m_editNUM;
-	sinm(1, y, x);  	
-    m_editResult = y(1, 1);
-	m_editResult = y.Get(1, 1);
-	sinmTerminate();
-	UpdateData(FALSE); */        
-	
+	}	      	
 }
 
 
@@ -299,9 +254,26 @@ void CTrigonometryCalculator01Dlg::OnBnClickedTanButton()
 void CTrigonometryCalculator01Dlg::OnBnClickedCotButton()
 {
 	// TODO: 计算cot函数
-	UpdateData(TRUE);
+	/*UpdateData(TRUE);
 	m_editResult = f_cot(m_editNUM);
-	UpdateData(FALSE);
+	UpdateData(FALSE);*/
+
+	UpdateData(TRUE);
+	typedef double(*lpCotFun)(double); //宏定义函数指针类型
+	HINSTANCE hDll;   //DLL句柄 
+	lpCotFun cotFun;  //函数指针
+	hDll = LoadLibrary(_T("cotcpp.dll"));  //动态获取dll文件路径
+	m_editResult = 0; //初始化输出为零
+	if (hDll != NULL)
+	{
+		cotFun = (lpCotFun)GetProcAddress(hDll, "f_cot");  //用sinFun取代dll库中的sincpp函数
+		if (cotFun != NULL)
+		{
+			m_editResult = cotFun(m_editNUM);
+			UpdateData(FALSE);
+		}
+		FreeLibrary(hDll);  //释放dll
+	}
 }
 
 

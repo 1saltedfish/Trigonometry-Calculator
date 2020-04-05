@@ -179,7 +179,7 @@ void CTrigonometryCalculator01Dlg::OnBnClickedSinButton()  //点击按钮sin，�
 	//m_editResult = f_sin(m_editNUM);  // 计算sin的值		
 	//UpdateData(FALSE);                // 根据各变量的值更新相应的控件，让输出结果编辑框显示m_editResult的值 
 
-	UpdateData(TRUE);
+	UpdateData(TRUE);  // 将各控件中的数据保存到相应的变量
 	typedef double(*lpSinFun)(double); //宏定义函数指针类型
 	HINSTANCE hDll;   //DLL句柄 
 	lpSinFun sinFun;  //函数指针
